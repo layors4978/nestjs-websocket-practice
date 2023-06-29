@@ -1,0 +1,29 @@
+<html>
+  <head>
+    <script type="module">
+      import { io } from 'https://cdn.socket.io/4.3.2/socket.io.esm.min.js';
+
+      const socket = io('http://localhost:3000');
+
+      socket.on('connect', function () {
+        console.log('Connected');
+      });
+
+      socket.on('exception', (data) => {
+        console.log('error', data);
+      });
+
+      socket.on('disconnect', () => {
+        console.log('Disconnected');
+      });
+
+      setInterval(() => {
+        socket.emit('echo', 'sending message', (response) => {
+          console.log(response);
+        });
+      }, 3000);
+    </script>
+  </head>
+
+  <body></body>
+</html>
