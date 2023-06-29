@@ -4,7 +4,7 @@ import {
   MessageBody,
 } from '@nestjs/websockets';
 
-@WebSocketGateway()
+@WebSocketGateway({ cors: '*' })
 export class WebsocketGateway {
   // use SubscribeMessage decorator to listen messages from client
   @SubscribeMessage('echo')
