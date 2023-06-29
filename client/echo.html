@@ -17,11 +17,19 @@
         console.log('Disconnected');
       });
 
+      socket.on('broadcast', (message) => {
+        console.log(message);
+      });
+
       setInterval(() => {
         socket.emit('echo', 'sending message', (response) => {
           console.log(response);
         });
       }, 3000);
+
+      setInterval(() => {
+        socket.emit('broadcast', 'broadcasting message');
+      }, 5000);
     </script>
   </head>
 
